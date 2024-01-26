@@ -1,4 +1,4 @@
-CST8918 - DevOps: Infrastructure as Code  
+CST8918 - DevOps: Infrastructure as Code
 Prof: Robert McKenney
 
 # LAB-A03 Pulumi Weather App
@@ -134,8 +134,7 @@ Create a new resource group. Use the prefixName + '-rg' for the name.
 At the top of your index.ts file, import the `resources` and `containerregistry` modules from the `@pulumi/azure-native` package.
 
 ```ts
-import * as resources from '@pulumi/azure-native/resources'
-import * as containerregistry from '@pulumi/azure-native/containerregistry'
+import * as resources from 'import * as containerregistry from '@pulumi/azure-native/containerregistry'
 ```
 
 Append this definition code to the bottom of your index.ts file. We will use the cost-optimized _basic_ registry SKU.
@@ -223,7 +222,7 @@ const image = new docker.Image(`${prefixName}-image`, {
 })
 ```
 
-Notice the code above references the `imageTag` variable. You can use this to assign the current version of the application before publishing it. This makes it really easy to roll-back if needed! You should set it now. Use the pulumi CLI to set it to `v0.2.0` -- our app is still in the prototype stage :wink:
+Notice the code above references the `imageTag` variable. You can use this to assign the current version of the application before publishing it. This makes it really easy to roll-back if needed! You should set it now. Use the pulumi CLI to set it to `v0.2.0` -- our app is still in the prototype stage 😉
 
 ```sh
 pulumi config set imageTag "v0.2.0"
