@@ -20,7 +20,7 @@ const memory = config.getNumber('memory') || 2
 const resourceGroup = new resources.ResourceGroup(`${prefixName}-rg`)
 
 // Create the container registry.
-const registry = new containerregistry.Registry(`${prefixName}-acr`, {
+const registry = new containerregistry.Registry(`${prefixName}acr`, {
   resourceGroupName: resourceGroup.name,
   adminUserEnabled: true,
   sku: {
