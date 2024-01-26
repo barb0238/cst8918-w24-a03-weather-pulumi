@@ -2,7 +2,8 @@ import * as pulumi from "@pulumi/pulumi";
 
 import * as resources from '@pulumi/azure-native/resources';
 import * as containerregistry from '@pulumi/azure-native/containerregistry';
-import * as docker from '@pulumi/docker'
+import * as docker from '@pulumi/docker';
+import * as containerinstance from '@pulumi/azure-native/containerinstance';
 
 // Import the configuration settings for the current stack.
 const config = new pulumi.Config()
