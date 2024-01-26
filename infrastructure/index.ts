@@ -15,3 +15,32 @@ const containerPort = config.getNumber('containerPort') || 80
 const publicPort = config.getNumber('publicPort') || 80
 const cpu = config.getNumber('cpu') || 1
 const memory = config.getNumber('memory') || 2
+
+// Create a resource group.
+const resourceGroup = new resources.ResourceGroup(`${prefixName}-rg`)
+
+// Create the container registry.
+const registry = new containerregistry.Registry(`${prefixName}-acr`, {
+  resourceGroupName: resourceGroup.name,
+  adminUserEnabled: true,
+  sku: {
+    name: containerregistry.SkuName.Basic
+  }
+})
+
+// Get the authentication credentials for the container registry.
+const registryCredentials = containerregistry
+  .listRegistryCredentialsOutput({
+    resourceGroupName: resourceGroup.name,
+    registryName: registry.name
+  })
+  .apply(creds => {
+    return {
+      username: creds.username!,
+      password: creds.passwords![0].value!
+    }
+  })
+
+
+  export const acrServer = registry.loginServer
+export const acrUsername = registryCredentials.username
